@@ -17,6 +17,14 @@ const Home = () => {
   const [correctAnswer, setCorrectAnswer] = useState('')
   const [incorrectAnswers, setIncorrectAnswers] = useState('')
 
+  let correct_answer = correct_answer
+  let incorrect_answers = incorrect_answers
+
+  const [answers, setAnswers] = useState({
+    correctAnswer: correct_answer,
+    incorrectAnswers: incorrect_answers
+  })
+
   const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
     // setQuestion(res.data.results[0].question.replaceAll('&quot;', '"').replaceAll('&#039;', "'"));
     // setCorrectAnswer(res.data.results[0].correct_answer.replaceAll('&quot;', '"').replaceAll('&#039;', "'"));
