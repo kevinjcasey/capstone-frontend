@@ -16,20 +16,24 @@ const Questions = ( { question, correct_answer, incorrect_answers }) => {
     'incorrect_answers': false
   })
 
-  const [correctAnswer, setCorrectAnswer] = useState(true)
-  const [incorrectAnswers, setIncorrectAnswers] = useState(false)
+  const [correctAnswer, setCorrectAnswer] = useState('')
+  const [incorrectAnswers, setIncorrectAnswers] = useState('')
 
   const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
     setNewQuestion(res.data.results)
     setAnswers(res.data.results)
   })
 
+  const choices = [correct_answer, incorrect_answers]
+
+    // need to pass a parameter that holds the answers array
   const handleAnswer = () => {
-    let userChoice = newQuestion.correct_answer || newQuestion.incorrect_answers
-    
-    if (userChoice === newQuestion.correct_answer ) {
+
+
+
+    if (newQuestion.correct_answer === choices[0]) {
       console.log('correct!')
-    } else if (userChoice === newQuestion.incorrect_answers[0] ) {
+    } else if (newQuestion.incorrect_answers === choices[1]) {
       console.log('incorrect!');
     }
     
