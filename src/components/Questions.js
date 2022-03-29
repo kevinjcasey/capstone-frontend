@@ -21,14 +21,15 @@ const Questions = ( { question, correct_answer, incorrect_answers }) => {
 
   const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
     setNewQuestion(res.data.results)
-    setAnswers(res.data.results, correct_answer, ...incorrect_answers)
+    setAnswers(res.data.results)
   })
 
   const handleAnswer = () => {
-
-    if (correctAnswer === true ) {
+    let userChoice = newQuestion.correct_answer || newQuestion.incorrect_answers
+    
+    if (userChoice === newQuestion.correct_answer ) {
       console.log('correct!')
-    } else if (incorrectAnswers === false) {
+    } else if (userChoice === newQuestion.incorrect_answers[0] ) {
       console.log('incorrect!');
     }
     
