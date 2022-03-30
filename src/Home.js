@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Questions from './components/Questions';
 
+// REACT ROUTER
+import { HashRouter as Router, Routes, Route, Redirect } from 'react-router-dom'
+
 // type Props = {
 //   index: number;
 //   question: string;
@@ -42,7 +45,11 @@ const Home = () => {
 
   return (
     <div>
-      <Questions />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Questions />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
