@@ -39,7 +39,15 @@ const Home = () => {
         <Routes>
           <Route path="/" element={<Questions />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/login" 
+            element={
+              <Login 
+                tokenProp={{ token, setToken }}
+                userProp={{ user, setUser }}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>
