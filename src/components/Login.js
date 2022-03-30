@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import Link from 'react-router-dom'
+import { Link }from 'react-router-dom'
 
 const Login = () => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     console.log('submit');
   }
@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <div>
       <div>
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Username</label>
@@ -47,7 +47,7 @@ const Login = () => {
           </div>
           <p>
             Don't have an account?
-            <Link to='/register'>Login</Link>
+            <Link to='/register'>Register</Link>
           </p>
         </form>
       </div>

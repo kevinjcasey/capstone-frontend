@@ -5,49 +5,41 @@ import Questions from './components/Questions';
 // REACT ROUTER
 import { HashRouter as Router, Routes, Route, Redirect } from 'react-router-dom'
 
-// type Props = {
-//   index: number;
-//   question: string;
-//   answer: string;
-//   categorgy: string;
-// }
+// USER AUTH 
+import Login from './components/Login'
+import Register from './components/Register'
 
 const Home = () => {
 
-  // const [question, setQuestion] = useState('')
-  // const [newQuestion, setNewQuestion] = useState([])
-  // const [category, setCategory] = useState('')
-  // const [correctAnswer, setCorrectAnswer] = useState('')
-  // const [incorrectAnswers, setIncorrectAnswers] = useState('')
-
-  // const correct_answer = correct_answer
-  // const incorrect_answers = incorrect_answers 
- 
-  // const [answers, setAnswers] = useState({
-  //   'correct_answer': '',
-  //   'incorrect_answers': ''
-  // })
-
-  // const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
-  //   setNewQuestion(res.data.results)
-  //   setAnswers(res.data.results)
-  // })
-
-  // Need to create an array or state that holds both correct and incorrect answers?
+  // USER AUTH
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState('')
   
+  // May need to set up an error state 
+  const getUser = () => {
+    axios.get('http://localhost:8000/api/auth/user', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: "Token " + token,
+      }
+    })
+    .then((res) => {
+      setUser(res.data)
+    })
+    .catch((err) => console.log(err));
+  } 
 
-
-  // useEffect(() => {
-  //   getTrivia()
-  // }, [])
-
-  // replaceAll('&quot;', '"').replaceAll('&#039;', "'").replaceAll('&amp;', '&')
+  useEffect(() => {
+    getUser()
+  }, [])
 
   return (
     <div>
       <Router>
         <Routes>
           <Route path="/" element={<Questions />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>

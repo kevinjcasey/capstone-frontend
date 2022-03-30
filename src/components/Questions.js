@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-// const Button = ({ answer }) => {
-//   <button>
-//     {answer}
-//   </button>
-// }
+// USER AUTH / REACT ROUTER
+import { Link } from 'react-router-dom'
+
 
 const Questions = ( { question, correct_answer, incorrect_answers }) => {
   
@@ -46,7 +44,16 @@ const Questions = ( { question, correct_answer, incorrect_answers }) => {
   }, [])
   
   return (
-    <div className="App">
+    <>
+    <ul>
+      <li>
+        <Link to="/register">Register</Link>
+      </li>
+      <li>
+        <Link to="/login">Login</Link>
+      </li>
+    </ul>
+    <div>
       <h1>Movie Trivia</h1>
       { newQuestion.map((questions) => {
         return (
@@ -61,6 +68,7 @@ const Questions = ( { question, correct_answer, incorrect_answers }) => {
         )
       })}
     </div>
+    </>
   )
 }
 

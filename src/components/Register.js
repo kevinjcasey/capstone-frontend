@@ -1,7 +1,7 @@
 // With help from Brad Traversy - https://www.youtube.com/watch?v=EmAc4wQikwY
 
 import React, { useState, useEffect } from 'react'
-import Link from 'react-router-dom'
+import { Link }from 'react-router-dom'
 
 const Register = () => {
 
@@ -10,7 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     console.log('submit');
   }
@@ -38,7 +38,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label>Username</label>
+            <label>Email</label>
             <input 
               type="text"
               name="email"
@@ -47,7 +47,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label>Username</label>
+            <label>Password</label>
             <input 
               type="text"
               name="password"
@@ -56,7 +56,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label>Username</label>
+            <label>Confirm password</label>
             <input 
               type="text"
               name="password2"
@@ -71,7 +71,7 @@ const Register = () => {
           </div>
           <p>
             Already have an account?
-            <Link to='/login'>Regist</Link>
+            <Link to='/login'>Login</Link>
           </p>
         </form>
       </div>
