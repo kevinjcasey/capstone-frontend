@@ -24,14 +24,25 @@ const Home = () => {
       }
     })
     .then((res) => {
+      console.log(res);
       setUser(res.data)
     })
-    .catch((err) => console.log(err));
+    // .catch((err) => console.log(err));
   } 
 
+  // REFERENCE: https://blog.logrocket.com/using-localstorage-react-hooks/
+
   useEffect(() => {
-    getUser()
-  }, [])
+    // Localstorage gives access to a browser's storage object
+    // Returning the value of a specific stored item
+    setToken(window.localStorage.getItem('token'))
+  }, []) 
+
+
+  useEffect(() => {
+    window.localStorage.setItem("token", token);
+    getUser();
+  }, [token]); // token token token 
 
   return (
     <div>
