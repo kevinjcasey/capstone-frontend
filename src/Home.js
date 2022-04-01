@@ -17,16 +17,16 @@ const Home = () => {
   
   // May need to set up an error state 
   const getUser = () => {
-    axios.get('http://localhost:8000/api/auth/user', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: "Token " + token,
-      }
-    })
-    .then((res) => {
-      console.log(res);
-      setUser(res.data)
-    })
+    // axios.get('http://localhost:8000/api/auth/user', {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: "Token " + token,
+    //   }
+    // })
+    // .then((res) => {
+    //   console.log(res);
+    //   setUser(res.data)
+    // })
     // .catch((err) => console.log(err));
   } 
 

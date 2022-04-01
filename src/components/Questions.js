@@ -5,42 +5,65 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 
-const Questions = ( { question, correct_answer, incorrect_answers }) => {
+const Questions = () => {
   
-  const [newQuestion, setNewQuestion] = useState([])
+  const [trivia, setTrivia] = useState([])
+  
+  const [questionIndex, setQuestionIndex] = useState(0)
 
-  const [answers, setAnswers] = useState({
-    'correct_answer': true,
-    'incorrect_answers': false
-  })
+  const [answerOptions, setAnswerOptions] = useState([])
 
-  const [correctAnswer, setCorrectAnswer] = useState('')
-  const [incorrectAnswers, setIncorrectAnswers] = useState('')
+  const [answerSelected, setAnswerSelected] = useState(false)
+
+  const [userAnswer, setUserAnswer] = useState(null)
+
+  const [score, setScore] = useState(0)
 
   const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
-    setNewQuestion(res.data.results)
-    setAnswers(res.data.results)
+    setTrivia(res.data.results)
   })
+  
+  // {
+  //   "category": "Entertainment: Film",
+  //   "type": "multiple",
+  //   "difficulty": "easy",
+  //   "question": "Who plays Alice in the Resident Evil movies?",
 
-  const choices = [correct_answer, incorrect_answers]
+  //   "correct_answer": "Milla Jovovich",
+  
+  //   "incorrect_answers": [
+  //   "Madison Derpe",
+  //   "Milla Johnson",
+  //   "Kim Demp"
+  //   ]
+  //   },
 
-    // need to pass a parameter that holds the answers array
+  
+
+
+  // need to pass a parameter that holds the answers array?
   const handleAnswer = () => {
 
+    console.log(trivia[0].correct_answer);
+    console.log(...trivia[0].incorrect_answers);
+  }
+  
+  const question = trivia[questionIndex] 
 
-
-    if (newQuestion.correct_answer === choices[0]) {
-      console.log('correct!')
-    } else if (newQuestion.incorrect_answers === choices[1]) {
-      console.log('incorrect!');
-    }
-    
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max))
   }
 
-  const shuffleAnswer = [correct_answer, incorrect_answers]
+  const answersArray = () => {
+    let answers = [...question.incorrect_answers]
+    answers.splice(getRandomInt(question.incorrect_answers.length), 0, question.correct_answer)
+
+    setAnswerOptions(answers)
+  }
   
   useEffect(() => {
     getTrivia()
+    answersArray()
   }, [])
   
   return (
@@ -55,15 +78,15 @@ const Questions = ( { question, correct_answer, incorrect_answers }) => {
     </ul>
     <div>
       <h1>Movie Trivia</h1>
-      { newQuestion.map((questions) => {
+      { trivia.map((trivia) => {
         return (
-          <div key={questions.question}>
-            <h3 dangerouslySetInnerHTML={{ __html: questions.question}} />
+          <div key={trivia.question}>
+            <h3 dangerouslySetInnerHTML={{ __html: trivia.question}} />
 
-            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: questions.correct_answer}}></button>
-            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: questions.incorrect_answers[0]}}></button>
-            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: questions.incorrect_answers[1]}}></button>
-            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: questions.incorrect_answers[2]}}></button>
+            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: trivia.correct_answer}}></button>
+            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: trivia.incorrect_answers[0]}}></button>
+            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: trivia.incorrect_answers[1]}}></button>
+            <button onClick={handleAnswer} dangerouslySetInnerHTML={{ __html: trivia.incorrect_answers[2]}}></button>
           </div>
         )
       })}
