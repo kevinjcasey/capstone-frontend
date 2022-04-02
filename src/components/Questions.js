@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 // USER AUTH / REACT ROUTER
@@ -13,11 +13,11 @@ const Questions = () => {
 
   const [answerOptions, setAnswerOptions] = useState([])
 
-  const [answerSelected, setAnswerSelected] = useState(false)
+  // const [answerSelected, setAnswerSelected] = useState(false)
 
-  const [userAnswer, setUserAnswer] = useState(null)
+  // const [userAnswer, setUserAnswer] = useState(null)
 
-  const [score, setScore] = useState(0)
+  // const [score, setScore] = useState(0)
 
   const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
     setTrivia(res.data.results)
@@ -39,31 +39,35 @@ const Questions = () => {
   //   },
 
   
-
-
-  // need to pass a parameter that holds the answers array?
-  const handleAnswer = () => {
-
-    console.log(trivia[0].correct_answer);
-    console.log(...trivia[0].incorrect_answers);
-  }
-  
   const question = trivia[questionIndex] 
+  const answer = trivia.correct_answer
 
-  const getRandomInt = (max) => {
-    return Math.floor(Math.random() * Math.floor(max))
+  const shuffleAnswers = () => {
+    // Never rotates the last answer option...?
+    return Math.floor(Math.random() * Math.max())
   }
 
-  const answersArray = () => {
+  const handleAnswer = () => {
+    console.log(trivia[0].question);
+  }
+
+  const nextQuestion = () => {
+    setQuestionIndex(questionIndex + 1)
+  }
+
+  useEffect(() => {
+    if (!question) {
+      return;
+    }
     let answers = [...question.incorrect_answers]
-    answers.splice(getRandomInt(question.incorrect_answers.length), 0, question.correct_answer)
-
+    answers.splice(shuffleAnswers(question.incorrect_answers.length), 0, question.correct_answer)
+    
     setAnswerOptions(answers)
-  }
+  }, [])
+    
   
   useEffect(() => {
     getTrivia()
-    answersArray()
   }, [])
   
   return (
