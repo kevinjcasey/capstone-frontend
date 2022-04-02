@@ -82,6 +82,8 @@ const Questions = () => {
     </ul>
     <div>
       <h1>Movie Trivia</h1>
+      {answerOptions}
+      {answerOptions}
       { trivia.map((trivia) => {
         return (
           <div key={trivia.question}>
