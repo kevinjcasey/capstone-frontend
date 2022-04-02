@@ -8,6 +8,7 @@ import { HashRouter as Router, Routes, Route, Redirect } from 'react-router-dom'
 // USER AUTH 
 import Login from './components/Login'
 import Register from './components/Register'
+import GameStart from './components/GameStart';
 
 const Home = () => {
 
@@ -48,7 +49,7 @@ const Home = () => {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Questions />} />
+          <Route path="/" element={<GameStart />} />
           <Route path="/register" element={<Register />} />
           <Route 
             path="/login" 
