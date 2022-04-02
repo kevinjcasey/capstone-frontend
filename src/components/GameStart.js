@@ -74,7 +74,7 @@ const GameStart = () => {
 
   // REFERENCE (DIRECTLY FROM API): https://opentdb.com/api_config.php
   const gameStart = () => {
-    // Had ever used this method before but I love it!
+    // Had never used this method before but it seems great for routes
     let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
     // if not 'SELECT ALL':
     if (questionCategory.length) { 
@@ -98,6 +98,7 @@ const GameStart = () => {
   
   return (
     <div>
+      <h1 className='title'>Bar Trivia</h1>
       {/* ------- Category ------- */}
       <div>
         <h3>Category:</h3>

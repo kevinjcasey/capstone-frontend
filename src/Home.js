@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import App from './App.css'
 
 // REDUX
 import { useSelector } from 'react-redux'
@@ -64,11 +65,11 @@ const Home = () => {
 
   let componentPage 
 
-  if (questions.length && questionIndex + 1 <= questions.length) {
-    componentPage = <Question />
-  } else if (!questions.length) {
-    componentPage = <GameStart />
-  }
+  // if (questions.length && questionIndex + 1 <= questions.length) {
+  //   componentPage = <Question />
+  // } else if (!questions.length) {
+  //   componentPage = <GameStart />
+  // }
 
   return (
     <div>

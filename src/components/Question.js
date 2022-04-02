@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Question = () => {
   // STATES
+  const [questions, setQuestions] = useState([])
   const [answerOptions, setAnswerOptions] = useState([])
   const [answerSelected, setAnswerSelected] = useState(false)
   const [userAnswer, setUserAnswer] = useState(null)
@@ -12,13 +13,13 @@ const Question = () => {
 
   // DATA FROM STORE
   const score = useSelector((state) => state.score)
-  const questions = useSelector((state) => state.questions)
+  // const questions = useSelector((state) => state.questions)
   const questionIndex = useSelector((state) => state.index)
 
   // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
   const answer = question && question.correct_answer
-
+  
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   const shuffleAnswers = (max) => {
@@ -69,15 +70,27 @@ const Question = () => {
     }
   }
 
+  console.log(questions);
+  
   useEffect(() => {
     handleAnswer()
+    // Will this work?
+    questions.map((question) => {
+      return {
+        ...question,
+        question: question.question,
+        correct_answer: question.correct_answer,
+        incorrect_answers: question.incorrect_answers
+      }
+    })
   }, [])
 
   return (
     <div>
       {/* Displaying the first question and answer options */}
       <h2>Question {questionIndex + 1}</h2>
-      <h3 dangerouslySetInnerHTML={{ __html: question.question}} />
+      {/* <h3 dangerouslySetInnerHTML={{ __html: questions.questions}} /> */}
+      <h3>{questions.question}</h3>
       <ul>
         { answerOptions.map((option, index) => {
           return (
