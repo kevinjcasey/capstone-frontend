@@ -17,7 +17,7 @@ const Question = () => {
 
   // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
-  const answer = question.correct_answer
+  const answer = question && question.correct_answer
 
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -39,12 +39,60 @@ const Question = () => {
     setAnswerOptions(answers)
   }
 
+  // USER ANSWER CHOICE
+  const handleAnswerChoice = (event) => {
+    setAnswerSelected(true)
+    // textContent changes the text of the element to be readable
+    // original state set to 'null'
+    setUserAnswer(event.target.textContent)
+    
+    if (event.target.textContent === answer) {
+      // update user score
+      dispatch({
+        type: 'SET_SCORE',
+        score: score +1
+      })
+    }
+  }
+  
+  // NEXT QUESTION
+  const nextQuestion = () => {
+    if (questionIndex + 1 <= questions.length) {
+      // resetting user answer choices
+      setAnswerSelected(false)
+      setUserAnswer(null)
+      // update question index
+      dispatch({
+        type: 'SET_INDEX',
+        index: questionIndex + 1,
+      })
+    }
+  }
+
   useEffect(() => {
     handleAnswer()
   }, [])
 
   return (
-    <div>Question</div>
+    <div>
+      {/* Displaying the first question and answer options */}
+      <h2>Question {questionIndex + 1}</h2>
+      <h3 dangerouslySetInnerHTML={{ __html: question.question}} />
+      <ul>
+        { answerOptions.map((option, index) => {
+          return (
+            <li
+              key={index}
+              onClick={handleAnswerChoice}
+              dangerouslySetInnerHTML={{ __html: answerOptions.option}}
+            >
+            </li>
+          )
+        }
+        )}
+      </ul>
+      <button onClick={nextQuestion}>Next Question</button>
+    </div>
   )
 }
 

@@ -6,6 +6,8 @@ import axios from 'axios'
   // useDispatch (dispatch) allows dispatching actions and updating
 import { useSelector, useDispatch } from 'react-redux'
 
+import { Link } from 'react-router-dom'
+
 const GameStart = () => {
   // STATES
   const [menuOptions, setMenuOptions] = useState([])
@@ -149,7 +151,11 @@ const GameStart = () => {
           onChange={handleNumberSelect}
         />
       </div>
-      <button onClick={gameStart}>Start!</button>
+  
+      <Link to="/questions" onClick={gameStart}>
+        Start!
+      </Link>
+      
     </div>
   )
 }
