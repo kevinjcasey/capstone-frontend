@@ -1,0 +1,14 @@
+.title {
+  color: blue;
+}
+
+body {
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/Users/kevinjcasey/Desktop/capstone-frontend/capstone-frontend/public/images/jason-leung-KIdkIGmYdBM-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
+}
+
+

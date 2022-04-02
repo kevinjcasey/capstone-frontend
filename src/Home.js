@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
+import App from './App.css'
+
+// REDUX
+import { useSelector } from 'react-redux'
+
 import Questions from './components/Questions';
+import Question from './components/Question'
+import GameStart from './components/GameStart';
+import Reducer from './Reducer';
 
 // REACT ROUTER
-import { HashRouter as Router, Routes, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 
 // USER AUTH 
 import Login from './components/Login'
@@ -11,11 +19,12 @@ import Register from './components/Register'
 
 const Home = () => {
 
-  // USER AUTH
+  // ============================================ //
+  // ================ USER AUTH ================= //
+  // ============================================ //
   const [user, setUser] = useState(null)
   const [token, setToken] = useState('')
   
-  // May need to set up an error state 
   const getUser = () => {
     // axios.get('http://localhost:8000/api/auth/user', {
     //   headers: {
@@ -44,11 +53,30 @@ const Home = () => {
     getUser();
   }, [token]); // token token token 
 
+  // ============================================ //
+  // ============================================ //
+  // ============================================ //
+
+  // STORE DATA
+  const questions = useSelector((state) => state.questions)
+  const questionIndex = useSelector((state) => state.index)
+  
+  // PAGE DISPLAY
+
+  let componentPage 
+
+  // if (questions.length && questionIndex + 1 <= questions.length) {
+  //   componentPage = <Question />
+  // } else if (!questions.length) {
+  //   componentPage = <GameStart />
+  // }
+
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Questions />} />
+          <Route path="/" element={<GameStart />} />
+          <Route path="/questions" element={<Question />} />
           <Route path="/register" element={<Register />} />
           <Route 
             path="/login" 
@@ -61,6 +89,9 @@ const Home = () => {
           />
         </Routes>
       </Router>
+    {/* <div>
+      <div>{componentPage}</div>
+    </div> */}
     </div>
   );
 }
