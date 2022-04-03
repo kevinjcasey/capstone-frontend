@@ -19,7 +19,7 @@ const Question = () => {
   // QUESTION and ANSWER
   // console.log(questions[questionIndex]);
   const question = questions[questionIndex] // initial value = 0
-  const answer = questions && questions.correct_answer
+  const answer = question && question.correct_answer
 
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -39,10 +39,9 @@ const Question = () => {
     answers.splice(shuffleAnswers(question.incorrect_answers.length), 0, question.correct_answer)
 
     setAnswerOptions(answers)
-    console.log(answerOptions);
   }
 
-  // USER ANSWER CHOICE
+  // USER ANSWER CHOICE + SCORE INCREASE
   const handleAnswerChoice = (event) => {
     setAnswerSelected(true)
     // textContent changes the text of the element to be readable
@@ -85,6 +84,8 @@ const Question = () => {
     }) 
   }, [])
 
+  console.log(answerOptions);
+
   return (
     <div>
       {/* Displaying the first question and answer options */}
@@ -97,7 +98,7 @@ const Question = () => {
             //   dangerouslySetInnerHTML={{ __html: option}} 
             //   onClick={handleAnswerChoice}
             // />
-            <h3>{option}</h3>
+            <h3 key={option.id}>{option}</h3>
           )
         }
         )}
