@@ -75,7 +75,26 @@ const GameStart = () => {
   // const [questions, setQuestions] = useState([])
 
   // REFERENCE (DIRECTLY FROM API): https://opentdb.com/api_config.php
-  const gameStart = () => {
+  // const gameStart = () => {
+  //   // Had never used this method before but it seems great for routes
+  //   let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
+  //   // if not 'SELECT ALL':
+  //   if (questionCategory.length) { 
+  //     // allows merging two or more arrays into one, without directly affecting original ("shallow copy")
+  //     triviaURL = triviaURL.concat(`&category=${questionCategory}`)
+  //   }
+  //   if (questionDifficulty.length) {
+  //     triviaURL = triviaURL.concat(`&difficulty=${questionDifficulty}`)
+  //   }
+  //   // if (questionType.length) {
+  //   //   triviaURL = triviaURL.concat(`&type=${questionType}`)
+  //   // }
+  //   axios.get(triviaURL).then((res) => {
+  //     setQuestions(res.data.results) // 'results' is an object from the API
+  //   })
+  // }
+
+  const gameStart = async () => {
     // Had never used this method before but it seems great for routes
     let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
     // if not 'SELECT ALL':
@@ -89,10 +108,10 @@ const GameStart = () => {
     // if (questionType.length) {
     //   triviaURL = triviaURL.concat(`&type=${questionType}`)
     // }
-    axios.get(triviaURL).then((res) => {
+    await axios.get(triviaURL).then((res) => {
       setQuestions(res.data.results) // 'results' is an object from the API
     })
-  }
+  } 
 
   useEffect(() => {
     getTrivia()

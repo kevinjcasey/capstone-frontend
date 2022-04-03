@@ -91,7 +91,7 @@ const Question = () => {
     //     incorrect_answers: question.incorrect_answers
     //   }
     // }) 
-  }, [questionIndex])
+  }, [questionIndex]) 
 
   // <Question />
   // <Answer />
