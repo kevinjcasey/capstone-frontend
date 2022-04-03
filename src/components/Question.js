@@ -9,7 +9,7 @@ const Question = () => {
   const score = useSelector((state) => state.score)
 
   const question = questions[questionIndex] // initial value = 0
-  const answer = question && questions.correct_answer
+  const answer = question && question.correct_answer
   
   // STATES
   // const [questions, setQuestions] = useState([])
@@ -64,6 +64,7 @@ const Question = () => {
         score: score +1
       })
     }
+    console.log(event.target.textContent);
   }
   
   // NEXT QUESTION
@@ -102,18 +103,19 @@ const Question = () => {
       <h2>Question {questionIndex + 1}</h2>
       <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
       <ul>
-        { answerOptions.map((option, index) => {
+        { answerOptions.map((option, id) => {
           return (
             // <h3 
             //   dangerouslySetInnerHTML={{ __html: option}} 
             //   onClick={handleAnswerChoice}
             // />
-            <h3>{option}</h3>
+            <button onClick={handleAnswerChoice} key={id}>{option}</button>
           )
         }
         )}
       </ul>
       <button onClick={nextQuestion}>Next Question</button>
+      <h3>Score: {score}</h3>
     </div>
   )
 }
