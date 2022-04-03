@@ -74,7 +74,7 @@ const Question = () => {
   
   useEffect(() => {
     handleAnswer()
-    // Will this work?
+    // Will this work? No.
     questions.map((question) => {
       return {
         ...question,
