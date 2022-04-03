@@ -21,8 +21,8 @@ const GameStart = () => {
   const questionDifficulty = useSelector((state) => state.menuOptions.difficulty)
   const questionType = useSelector((state) => state.menuOptions.type)
   const questionNumber = useSelector((state) => state.menuOptions.number_of_questions)
+  const questionIndex = useSelector((state) => state.index)
 
-  
   // API CATEGORIES CALL
   const getTrivia = () => {
     axios.get('https://opentdb.com/api_category.php').then((res) => {
@@ -72,6 +72,8 @@ const GameStart = () => {
     })
   }
 
+  // const [questions, setQuestions] = useState([])
+
   // REFERENCE (DIRECTLY FROM API): https://opentdb.com/api_config.php
   const gameStart = () => {
     // Had never used this method before but it seems great for routes
@@ -84,11 +86,11 @@ const GameStart = () => {
     if (questionDifficulty.length) {
       triviaURL = triviaURL.concat(`&difficulty=${questionDifficulty}`)
     }
-    if (questionType.length) {
-      triviaURL = triviaURL.concat(`&type=${questionType}`)
-    }
+    // if (questionType.length) {
+    //   triviaURL = triviaURL.concat(`&type=${questionType}`)
+    // }
     axios.get(triviaURL).then((res) => {
-      setQuestions(res.results) // 'results' is an object from the API
+      setQuestions(res.data.results) // 'results' is an object from the API
     })
   }
 
@@ -98,7 +100,7 @@ const GameStart = () => {
   
   return (
     <div>
-      <Link to="/add">Contribute</Link>
+      <button><Link to="/add">Contribute</Link></button>
       <h1 className='title'>Bar Trivia</h1>
       {/* ------- Category ------- */}
       <div>
@@ -134,7 +136,7 @@ const GameStart = () => {
         </select>
       </div>
       {/* ------- Question Type ------- */}
-      <div>
+      {/* <div>
         <h3>Question Type:</h3>
         <select 
           value={questionType}
@@ -144,7 +146,7 @@ const GameStart = () => {
           <option value="multiple-choice">Multiple Choice</option>
           <option value="true/false">True/False</option>
         </select>
-      </div>
+      </div> */}
       {/* ------- Question Amount ------- */}
       <div>
         <h3>Number of Questions:</h3>
@@ -154,9 +156,10 @@ const GameStart = () => {
         />
       </div>
   
-      <Link to="/questions" onClick={gameStart}>
+      <button><Link to="/questions" onClick={gameStart}>
         Start!
-      </Link>
+      </Link></button>
+      
       
     </div>
   )

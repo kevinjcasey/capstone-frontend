@@ -13,9 +13,9 @@ const store = createStore(Reducer)
 // The Provider component makes the store available to any nested component, which is why we render it at the top level of the app
 ReactDOM.render(
   <React.StrictMode>
-  <Provider store={store}>
-    <Home />
-  </Provider>
+    <Provider store={store}>
+      <Home />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

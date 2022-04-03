@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Question = () => {
   // STATES
-  const [questions, setQuestions] = useState([])
+  // const [questions, setQuestions] = useState([])
   const [answerOptions, setAnswerOptions] = useState([])
   const [answerSelected, setAnswerSelected] = useState(false)
   const [userAnswer, setUserAnswer] = useState(null)
@@ -12,14 +12,15 @@ const Question = () => {
   const dispatch = useDispatch()
 
   // DATA FROM STORE
-  const score = useSelector((state) => state.score)
-  // const questions = useSelector((state) => state.questions)
+  const questions = useSelector((state) => state.questions)
   const questionIndex = useSelector((state) => state.index)
+  const score = useSelector((state) => state.score)
 
   // QUESTION and ANSWER
+  // console.log(questions[questionIndex]);
   const question = questions[questionIndex] // initial value = 0
-  const answer = question && question.correct_answer
-  
+  const answer = questions && questions.correct_answer
+
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   const shuffleAnswers = (max) => {
@@ -38,6 +39,7 @@ const Question = () => {
     answers.splice(shuffleAnswers(question.incorrect_answers.length), 0, question.correct_answer)
 
     setAnswerOptions(answers)
+    console.log(answerOptions);
   }
 
   // USER ANSWER CHOICE
@@ -69,8 +71,6 @@ const Question = () => {
       })
     }
   }
-
-  console.log(questions);
   
   useEffect(() => {
     handleAnswer()
@@ -82,24 +82,22 @@ const Question = () => {
         correct_answer: question.correct_answer,
         incorrect_answers: question.incorrect_answers
       }
-    })
+    }) 
   }, [])
 
   return (
     <div>
       {/* Displaying the first question and answer options */}
       <h2>Question {questionIndex + 1}</h2>
-      {/* <h3 dangerouslySetInnerHTML={{ __html: questions.questions}} /> */}
-      <h3>{questions.question}</h3>
+      <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
       <ul>
         { answerOptions.map((option, index) => {
           return (
-            <li
-              key={index}
-              onClick={handleAnswerChoice}
-              dangerouslySetInnerHTML={{ __html: answerOptions.option}}
-            >
-            </li>
+            // <h3 
+            //   dangerouslySetInnerHTML={{ __html: option}} 
+            //   onClick={handleAnswerChoice}
+            // />
+            <h3>{option}</h3>
           )
         }
         )}
