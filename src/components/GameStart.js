@@ -98,6 +98,7 @@ const GameStart = () => {
   
   return (
     <div>
+      <Link to="/add">Contribute</Link>
       <h1 className='title'>Bar Trivia</h1>
       {/* ------- Category ------- */}
       <div>

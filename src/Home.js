@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import Questions from './components/Questions';
 import Question from './components/Question'
 import GameStart from './components/GameStart';
+import Add from './components/Add'
 import Reducer from './Reducer';
 
 // REACT ROUTER
@@ -78,6 +79,7 @@ const Home = () => {
           <Route path="/" element={<GameStart />} />
           <Route path="/questions" element={<Question />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/add" element={<Add />} />
           <Route 
             path="/login" 
             element={
