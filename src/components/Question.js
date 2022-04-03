@@ -2,9 +2,18 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Question = () => {
+
+  // DATA FROM STORE
+  const questions = useSelector((state) => state.questions)
+  const questionIndex = useSelector((state) => state.index)
+  const score = useSelector((state) => state.score)
+
+  const question = questions[questionIndex] // initial value = 0
+  const answer = question && questions.correct_answer
+  
   // STATES
-  const [questions, setQuestions] = useState([])
-  const [answerOptions, setAnswerOptions] = useState([])
+  // const [questions, setQuestions] = useState([])
+  const [answerOptions, setAnswerOptions] = useState([answer])
   const [answerSelected, setAnswerSelected] = useState(false)
   const [userAnswer, setUserAnswer] = useState(null)
 
@@ -12,14 +21,15 @@ const Question = () => {
   const dispatch = useDispatch()
 
   // DATA FROM STORE
-  const score = useSelector((state) => state.score)
   // const questions = useSelector((state) => state.questions)
-  const questionIndex = useSelector((state) => state.index)
+  // const questionIndex = useSelector((state) => state.index)
+  // const score = useSelector((state) => state.score)
 
   // QUESTION and ANSWER
-  const question = questions[questionIndex] // initial value = 0
-  const answer = question && question.correct_answer
-  
+  // console.log(questions[questionIndex]);
+  // const question = questions[questionIndex] // initial value = 0
+  // const answer = question && question.correct_answer
+
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   const shuffleAnswers = (max) => {
@@ -40,7 +50,7 @@ const Question = () => {
     setAnswerOptions(answers)
   }
 
-  // USER ANSWER CHOICE
+  // USER ANSWER CHOICE + SCORE INCREASE
   const handleAnswerChoice = (event) => {
     setAnswerSelected(true)
     // textContent changes the text of the element to be readable
@@ -69,37 +79,36 @@ const Question = () => {
       })
     }
   }
-
-  console.log(questions);
   
   useEffect(() => {
     handleAnswer()
     // Will this work? No.
-    questions.map((question) => {
-      return {
-        ...question,
-        question: question.question,
-        correct_answer: question.correct_answer,
-        incorrect_answers: question.incorrect_answers
-      }
-    })
-  }, [])
+    // questions.map((question) => {
+    //   return {
+    //     ...question,
+    //     question: question.question,
+    //     correct_answer: question.correct_answer,
+    //     incorrect_answers: question.incorrect_answers
+    //   }
+    // }) 
+  }, [questionIndex]) 
+
+  // <Question />
+  // <Answer />
 
   return (
     <div>
       {/* Displaying the first question and answer options */}
       <h2>Question {questionIndex + 1}</h2>
-      {/* <h3 dangerouslySetInnerHTML={{ __html: questions.questions}} /> */}
-      <h3>{questions.question}</h3>
+      <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
       <ul>
         { answerOptions.map((option, index) => {
           return (
-            <li
-              key={index}
-              onClick={handleAnswerChoice}
-              dangerouslySetInnerHTML={{ __html: answerOptions.option}}
-            >
-            </li>
+            // <h3 
+            //   dangerouslySetInnerHTML={{ __html: option}} 
+            //   onClick={handleAnswerChoice}
+            // />
+            <h3>{option}</h3>
           )
         }
         )}
