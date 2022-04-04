@@ -8,8 +8,9 @@ const Question = () => {
   const questionIndex = useSelector((state) => state.index)
   const score = useSelector((state) => state.score)
 
+  // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
-  const answer = question && questions.correct_answer
+  const answer = question && question.correct_answer
   
   // STATES
   // const [questions, setQuestions] = useState([])
@@ -19,16 +20,6 @@ const Question = () => {
 
   // DEFINING USE DISPATCH
   const dispatch = useDispatch()
-
-  // DATA FROM STORE
-  // const questions = useSelector((state) => state.questions)
-  // const questionIndex = useSelector((state) => state.index)
-  // const score = useSelector((state) => state.score)
-
-  // QUESTION and ANSWER
-  // console.log(questions[questionIndex]);
-  // const question = questions[questionIndex] // initial value = 0
-  // const answer = question && question.correct_answer
 
   // COMBINING CORRECT AND INCORRECT ANSWERS
   // REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -64,6 +55,7 @@ const Question = () => {
         score: score +1
       })
     }
+    console.log(event.target.textContent);
   }
   
   // NEXT QUESTION
@@ -79,41 +71,45 @@ const Question = () => {
       })
     }
   }
+
+  // SHOW ANSWERS
+  const showAnswer = (option) => {
+    if (!answerSelected) {
+      return ''
+    }
+    if (option === answer) {
+      return 'correct'
+    }
+    if (option === userAnswer) {
+      return 'selected'
+    }
+  }
   
   useEffect(() => {
     handleAnswer()
-    // Will this work? No.
-    // questions.map((question) => {
-    //   return {
-    //     ...question,
-    //     question: question.question,
-    //     correct_answer: question.correct_answer,
-    //     incorrect_answers: question.incorrect_answers
-    //   }
-    // }) 
-  }, [questionIndex]) 
-
-  // <Question />
-  // <Answer />
+  }, [questionIndex]) // What?
 
   return (
     <div>
       {/* Displaying the first question and answer options */}
       <h2>Question {questionIndex + 1}</h2>
       <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
-      <ul>
-        { answerOptions.map((option, index) => {
+      <div>
+        { answerOptions.map((option, id) => {
           return (
-            // <h3 
-            //   dangerouslySetInnerHTML={{ __html: option}} 
-            //   onClick={handleAnswerChoice}
-            // />
-            <h3>{option}</h3>
+          
+            <button 
+              className={showAnswer(option)}
+              onClick={handleAnswerChoice} 
+              key={id} 
+              dangerouslySetInnerHTML={{ __html: option}} />
+           
           )
         }
         )}
-      </ul>
+      </div>
       <button onClick={nextQuestion}>Next Question</button>
+      <h3>Score: {score}</h3>
     </div>
   )
 }
