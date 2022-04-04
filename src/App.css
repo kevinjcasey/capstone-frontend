@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/Users/kevinjcasey/Desktop/capstone-frontend/capstone-frontend/public/images/jason-leung-KIdkIGmYdBM-unsplash.jpg);
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/A7NEWC7.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   background-size: cover;
