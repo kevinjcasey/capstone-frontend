@@ -115,7 +115,7 @@ const GameStart = () => {
 
   useEffect(() => {
     getTrivia()
-    gameStart()
+    // gameStart()
   }, [])
   
   return (
@@ -176,9 +176,9 @@ const GameStart = () => {
         />
       </div>
   
-      <button><Link to="/questions" onClick={gameStart}>
+      <button onClick={gameStart}>
         Start!
-      </Link></button>
+      </button>
       {/* display Question via ? :  */}
       {/* <Question />  */}
     </div>

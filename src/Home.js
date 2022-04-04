@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import Questions from './components/Questions';
 import Question from './components/Question'
 import GameStart from './components/GameStart';
+import GameEnd from './components/GameEnd';
 import Add from './components/Add'
 import Reducer from './Reducer';
 
@@ -66,34 +67,42 @@ const Home = () => {
 
   let componentPage 
 
-  // if (questions.length && questionIndex + 1 <= questions.length) {
-  //   componentPage = <Question />
-  // } else if (!questions.length) {
-  //   componentPage = <GameStart />
-  // }
+  if (questions.length && questionIndex + 1 <= questions.length) {
+    componentPage = <Question />
+  } 
+  else if (!questions.length) {
+    componentPage = <GameStart />
+  }
+  else {
+    componentPage = <GameEnd />
+  }
+
+  console.log(questions.length);
 
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<GameStart />} />
-          <Route path="/questions" element={<Question />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/" element={<GameStart />} /> */}
+          {/* <Route path="/questions" element={<Question />} /> */}
           <Route path="/add" element={<Add />} />
-          <Route 
+
+          {/* <Route path="/register" element={<Register />} /> */}
+          {/* <Route 
             path="/login" 
             element={
               <Login 
                 tokenProp={{ token, setToken }}
                 userProp={{ user, setUser }}
               />
-            }
-          />
+            } */}
+          {/* /> */}
         </Routes>
+        <div>
+          <div>{componentPage}</div>
+        </div>
       </Router>
-    {/* <div>
-      <div>{componentPage}</div>
-    </div> */}
+    
     </div>
   );
 }
