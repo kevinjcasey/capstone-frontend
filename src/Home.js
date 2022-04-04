@@ -5,7 +5,6 @@ import App from './App.css'
 // REDUX
 import { useSelector } from 'react-redux'
 
-import Questions from './components/Questions';
 import Question from './components/Question'
 import GameStart from './components/GameStart';
 import GameEnd from './components/GameEnd';
@@ -27,7 +26,7 @@ const Home = () => {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState('')
   
-  const getUser = () => {
+  // const getUser = () => {
     // axios.get('http://localhost:8000/api/auth/user', {
     //   headers: {
     //     'Content-Type': 'application/json',
@@ -39,21 +38,21 @@ const Home = () => {
     //   setUser(res.data)
     // })
     // .catch((err) => console.log(err));
-  } 
+  // } 
 
   // REFERENCE: https://blog.logrocket.com/using-localstorage-react-hooks/
 
-  useEffect(() => {
-    // Localstorage gives access to a browser's storage object
-    // Returning the value of a specific stored item
-    setToken(window.localStorage.getItem('token'))
-  }, []) 
+  // useEffect(() => {
+  //   // Localstorage gives access to a browser's storage object
+  //   // Returning the value of a specific stored item
+  //   setToken(window.localStorage.getItem('token'))
+  // }, []) 
 
 
-  useEffect(() => {
-    window.localStorage.setItem("token", token);
-    getUser();
-  }, [token]); // token token token 
+  // useEffect(() => {
+  //   window.localStorage.setItem("token", token);
+  //   getUser();
+  // }, [token]); // token token token 
 
   // ============================================ //
   // ============================================ //
@@ -83,20 +82,7 @@ const Home = () => {
     <div>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<GameStart />} /> */}
-          {/* <Route path="/questions" element={<Question />} /> */}
           <Route path="/add" element={<Add />} />
-
-          {/* <Route path="/register" element={<Register />} /> */}
-          {/* <Route 
-            path="/login" 
-            element={
-              <Login 
-                tokenProp={{ token, setToken }}
-                userProp={{ user, setUser }}
-              />
-            } */}
-          {/* /> */}
         </Routes>
         <div>
           <div>{componentPage}</div>
