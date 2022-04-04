@@ -22,7 +22,6 @@ const Register = () => {
     setPassword2({[event.target.name]: event.target.value})
   }
   
-  
   return (
     <div>
       <div>

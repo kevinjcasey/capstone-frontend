@@ -11,6 +11,15 @@ body {
   padding: 100px;
 }
 
+/* .answerButton {
+  background-color: green;
+} */
 
 
+button.correct {
+  background-color: green;
+}
 
+button.selected:not(correct) {
+  background-color: red;
+}
