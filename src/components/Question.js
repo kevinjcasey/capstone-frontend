@@ -11,6 +11,8 @@ const Question = () => {
   // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
   const answer = question && question.correct_answer
+
+  console.log(answer);
   
   // STATES
   // const [questions, setQuestions] = useState([])

@@ -94,7 +94,7 @@ const GameStart = () => {
   //   })
   // }
 
-  const gameStart = async () => {
+  const gameStart = () => {
     // Had never used this method before but it seems great for routes
     let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
     // if not 'SELECT ALL':
@@ -108,13 +108,14 @@ const GameStart = () => {
     // if (questionType.length) {
     //   triviaURL = triviaURL.concat(`&type=${questionType}`)
     // }
-    await axios.get(triviaURL).then((res) => {
+    axios.get(triviaURL).then((res) => {
       setQuestions(res.data.results) // 'results' is an object from the API
     })
   } 
 
   useEffect(() => {
     getTrivia()
+    gameStart()
   }, [])
   
   return (
@@ -178,8 +179,8 @@ const GameStart = () => {
       <button><Link to="/questions" onClick={gameStart}>
         Start!
       </Link></button>
-      
-      
+      {/* display Question via ? :  */}
+      {/* <Question />  */}
     </div>
   )
 }

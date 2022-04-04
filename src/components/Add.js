@@ -29,8 +29,9 @@ const Add = () => {
     setNewTrivia({ ...newTrivia, [event.target.name]: event.target.value })
   }
 
-  const handleCreate = () => {
-    axios.post('http://localhost:8000/api/trivia')
+  const handleCreate = (event, addData) => {
+    event.preventDefault()
+    axios.post('http://localhost:8000/api/trivia', addData)
     .then((res) => {
       setTrivia([...trivia, res.data])
       console.log(res);
@@ -82,11 +83,36 @@ const Add = () => {
             <option name="questionType" value={newTrivia.questionType} onChange={handleChange}>MULTIPLE CHOICE</option>
             <option name="questionType" value={newTrivia.questionType} onChange={handleChange}>TRUE/FALSE</option>
           </select>
-          <input type="text" name="question" value={newTrivia.question} onChange={handleChange} />
-          <input type="text" name="correct_answer" value={newTrivia.correct_answer} onChange={handleChange} />
-          <input type="text" name="incorrect_answer_one" value={newTrivia.incorrect_answer_one} onChange={handleChange} />
-          <input type="text" name="incorrect_answer_two" value={newTrivia.incorrect_answer_two} onChange={handleChange} />
-          <input type="text" name="incorrect_answer_three" value={newTrivia.incorrect_answer_three} onChange={handleChange} />
+          <input 
+            type="text" 
+            name="question" 
+            value={newTrivia.question} 
+            onChange={handleChange} 
+            placeholder="Question"/>
+          <input 
+            type="text" 
+            name="correct_answer" 
+            value={newTrivia.correct_answer} 
+            onChange={handleChange}
+            placeholder="Correct Answer" />
+          <input 
+            type="text" 
+            name="incorrect_answer_one" 
+            value={newTrivia.incorrect_answer_one} 
+            onChange={handleChange} 
+            placeholder="Incorrect Answer #1"/>
+          <input 
+            type="text" 
+            name="incorrect_answer_two" 
+            value={newTrivia.incorrect_answer_two} 
+            onChange={handleChange} 
+            placeholder="Incorrect Answer #2"/>
+          <input 
+            type="text" 
+            name="incorrect_answer_three" 
+            value={newTrivia.incorrect_answer_three} 
+            onChange={handleChange} 
+            placeholder="Incorrect Answer #3"/>
           <input type="submit" />
         </form>
       </div>
