@@ -6,15 +6,15 @@ import axios from 'axios'
   // useDispatch (dispatch) allows dispatching actions and updating
 import { useSelector, useDispatch } from 'react-redux'
 
+// ROUTER
 import { Link } from 'react-router-dom'
+
+// BULMA
+import 'bulma/css/bulma.min.css';
 
 const GameStart = () => {
   // STATES
   const [menuOptions, setMenuOptions] = useState([])
-  // const [questionCategory, setQuestionCategory] = useState('')
-  // const [questionDifficulty, setQuestionDifficulty] = useState('')
-  // const [questionType, setQuestionType] = useState('')
-  // const [questionNumber, setQuestionNumber] = useState(10)
 
   // USE SELECTOR / STATE HOOKS
   const questionCategory = useSelector((state) => state.menuOptions.category)
@@ -72,28 +72,7 @@ const GameStart = () => {
     })
   }
 
-  // const [questions, setQuestions] = useState([])
-
   // REFERENCE (DIRECTLY FROM API): https://opentdb.com/api_config.php
-  // const gameStart = () => {
-  //   // Had never used this method before but it seems great for routes
-  //   let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
-  //   // if not 'SELECT ALL':
-  //   if (questionCategory.length) { 
-  //     // allows merging two or more arrays into one, without directly affecting original ("shallow copy")
-  //     triviaURL = triviaURL.concat(`&category=${questionCategory}`)
-  //   }
-  //   if (questionDifficulty.length) {
-  //     triviaURL = triviaURL.concat(`&difficulty=${questionDifficulty}`)
-  //   }
-  //   // if (questionType.length) {
-  //   //   triviaURL = triviaURL.concat(`&type=${questionType}`)
-  //   // }
-  //   axios.get(triviaURL).then((res) => {
-  //     setQuestions(res.data.results) // 'results' is an object from the API
-  //   })
-  // }
-
   const gameStart = () => {
     // Had never used this method before but it seems great for routes
     let triviaURL = `https://opentdb.com/api.php?amount=${questionNumber}`
@@ -119,41 +98,49 @@ const GameStart = () => {
   }, [])
   
   return (
-    <div>
-      <button><Link to="/add">Contribute</Link></button>
-      <h1 className='title'>Bar Trivia</h1>
+    <div className="container is-fluid">
+      <h1 className="title is-1 has-text-info mt-6">TriviaFluent</h1>
+      <h2 className="subtitle is-3 has-text-info">Brush up on your bar trivia!</h2>
       {/* ------- Category ------- */}
-      <div>
-        <h3>Category:</h3>
-        <select
-          value={questionCategory}
-          onChange={handleCategorySelect}
-        >
-          <option>Select All</option>
-          {menuOptions.map((category) => {
-            return (
-              <option 
-                value={category.id}
-                key={category.id}
-              >
-              {category.name}
-              </option>
-            )
-          })}
-        </select>
+      <div className="field">
+        <label className="label has-text-light is-size-5">Category:</label>
+        <div className="control">
+          <div className="select is-info is-rounded">
+            <select className="has-background-grey-lighter"
+              value={questionCategory}
+              onChange={handleCategorySelect}
+            >
+              <option>Select All</option>
+              {menuOptions.map((category) => {
+                return (
+                  <option 
+                    value={category.id}
+                    key={category.id}
+                  >
+                  {category.name}
+                  </option>
+                )
+              })}
+            </select>
+          </div>
+        </div>
       </div>
       {/* ------- Difficulty ------- */}
-      <div>
-        <h3>Difficulty:</h3>
-        <select 
-          value={questionDifficulty}
-          onChange={handleDifficultySelect}
-        >
-          <option value="">Select All</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+      <div className="field">
+        <label className="label has-text-light is-size-5">Difficulty:</label>
+        <div className="control">
+          <div className="select is-info is-rounded">
+            <select className="has-background-grey-lighter"
+            value={questionDifficulty}
+            onChange={handleDifficultySelect}
+            >
+            <option value="">Select All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
       </div>
       {/* ------- Question Type ------- */}
       {/* <div>
@@ -169,14 +156,18 @@ const GameStart = () => {
       </div> */}
       {/* ------- Question Amount ------- */}
       <div>
-        <h3>Number of Questions:</h3>
-        <input 
-          value={questionNumber}
-          onChange={handleNumberSelect}
-        />
+        <h3 className="label has-text-light is-size-5">Number of Questions:</h3>
+        <h3 className="label has-text-light is-size-6">(max: 50)</h3>
+        <div className="column is-2 is-offset-5">
+          <input 
+            value={questionNumber}
+            onChange={handleNumberSelect}
+            className="input is-normal has-background-grey-lighter is-rounded"
+          />
+        </div>
       </div>
   
-      <button onClick={gameStart}>
+      <button onClick={gameStart} className="button is-rounded is-info m-3">
         Start!
       </button>
       {/* display Question via ? :  */}

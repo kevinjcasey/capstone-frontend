@@ -7,12 +7,11 @@ const Question = () => {
   const questions = useSelector((state) => state.questions)
   const questionIndex = useSelector((state) => state.index)
   const score = useSelector((state) => state.score)
+  const questionNumber = useSelector((state) => state.menuOptions.number_of_questions)
 
   // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
   const answer = question && question.correct_answer
-
-  console.log(answer);
   
   // STATES
   // const [questions, setQuestions] = useState([])
@@ -57,7 +56,6 @@ const Question = () => {
         score: score +1
       })
     }
-    console.log(event.target.textContent);
   }
   
   // NEXT QUESTION
@@ -92,26 +90,27 @@ const Question = () => {
   }, [questionIndex]) // What?
 
   return (
-    <div>
+    <div className="mt-4">
       {/* Displaying the first question and answer options */}
-      <h2>Question {questionIndex + 1}</h2>
-      <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
+      <h2 className="title is-3 has-text-info p-3">Question {questionIndex + 1}</h2>
+      <h3 className="is-size-3 has-text-light" dangerouslySetInnerHTML={{ __html: question?.question}} />
       <div>
         { answerOptions.map((option, id) => {
           return (
-          
-            <button 
-              className={showAnswer(option)}
-              onClick={handleAnswerChoice} 
-              key={id} 
-              dangerouslySetInnerHTML={{ __html: option}} />
-           
+            
+            <div className="button-group">
+              <button 
+                className={showAnswer(option)}
+                onClick={handleAnswerChoice} 
+                key={id} 
+                dangerouslySetInnerHTML={{ __html: option}} />
+            </div>
           )
         }
         )}
       </div>
-      <button onClick={nextQuestion}>Next Question</button>
-      <h3>Score: {score}</h3>
+      <button className="button is-rounded is-info m-3" onClick={nextQuestion}>Next Question</button>
+      <h3 className="is-size-4 has-text-light">Score: {score} / {questionNumber}</h3>
     </div>
   )
 }

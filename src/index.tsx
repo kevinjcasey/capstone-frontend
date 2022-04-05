@@ -7,6 +7,8 @@ import Reducer from './Reducer'
 import { createStore } from 'redux' // redux specific
 import { Provider } from 'react-redux'
 
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
+
 // Creating the store and passing the Reducer as a parameter
 const store = createStore(Reducer)
 
