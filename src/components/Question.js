@@ -92,7 +92,7 @@ const Question = () => {
   return (
     <div>
       {/* Displaying the first question and answer options */}
-      <h2>Question {questionIndex + 1}</h2>
+      <h2 class="title is-2">Question {questionIndex + 1}</h2>
       <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
       <div>
         { answerOptions.map((option, id) => {
@@ -101,7 +101,7 @@ const Question = () => {
             <div className="button-group">
               <button 
                 className={showAnswer(option)}
-                class="answer-button"
+                // class="answer-button"
                 onClick={handleAnswerChoice} 
                 key={id} 
                 dangerouslySetInnerHTML={{ __html: option}} />

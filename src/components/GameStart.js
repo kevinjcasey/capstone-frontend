@@ -99,7 +99,8 @@ const GameStart = () => {
   
   return (
     <div className="container is-fluid">
-      <h1>Bar Trivia</h1>
+      <h1 className="title is-1 has-text-info">TriviaFluent</h1>
+      <h2 className="subtitle is-3 has-text-info">Brush up on your bar trivia!</h2>
       {/* ------- Category ------- */}
       <div className="field">
         <label className="label">Category:</label>

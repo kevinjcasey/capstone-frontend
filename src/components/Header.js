@@ -9,8 +9,16 @@ const Header = () => {
   return (
     <div className="has-navbar-fixed-top is-dark">
       <nav className="navbar-end">
-        <Link className="navbar=item" to="/">Home</Link>
-        <Link to="/add">Contribute</Link>
+      <p class="control">
+            <a class="button is-link" target="_blank" href="https://github.com/kevinjcasey">
+              {/* <span class="icon">
+                <i class="fa-brands fa-github"></i>
+              </span> */}
+              <span>
+                GitHub
+              </span>
+            </a>
+          </p>
       </nav>
     </div>
   )
