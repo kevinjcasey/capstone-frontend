@@ -45,21 +45,6 @@ const Add = () => {
     getTrivia()
   }, [])
 
-  // const triviaArray = [
-  //   {
-  //     name: 'GENERAL KNOWLEDGE',
-  //     id: 1
-  //   },
-  //   {
-  //     name: 'ENTERTAINMENT: BOOKS',
-  //     id: 2
-  //   },
-  //   {
-  //     name: 'ENTERTAINMENT: FILM',
-  //     id: 3
-  //   }
-  // ]
-
   return (
     <div>
       <h3 className="is-size-2 has-text-info">Submit your own questions for review</h3>
