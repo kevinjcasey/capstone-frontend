@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+
 .hero {
   background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/A7NEWC7.jpg');
   background-repeat: no-repeat;
@@ -9,6 +13,7 @@
   text-align: center;
   margin: 0 auto;
   padding-bottom: 300px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 button.correct {
