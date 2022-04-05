@@ -7,12 +7,11 @@ const Question = () => {
   const questions = useSelector((state) => state.questions)
   const questionIndex = useSelector((state) => state.index)
   const score = useSelector((state) => state.score)
+  const questionNumber = useSelector((state) => state.menuOptions.number_of_questions)
 
   // QUESTION and ANSWER
   const question = questions[questionIndex] // initial value = 0
   const answer = question && question.correct_answer
-
-  console.log(answer);
   
   // STATES
   // const [questions, setQuestions] = useState([])
@@ -57,7 +56,6 @@ const Question = () => {
         score: score +1
       })
     }
-    console.log(event.target.textContent);
   }
   
   // NEXT QUESTION
@@ -99,19 +97,21 @@ const Question = () => {
       <div>
         { answerOptions.map((option, id) => {
           return (
-          
-            <button 
-              className={showAnswer(option)}
-              onClick={handleAnswerChoice} 
-              key={id} 
-              dangerouslySetInnerHTML={{ __html: option}} />
-           
+            
+            <div className="button-group">
+              <button 
+                className={showAnswer(option)}
+                class="answer-button"
+                onClick={handleAnswerChoice} 
+                key={id} 
+                dangerouslySetInnerHTML={{ __html: option}} />
+            </div>
           )
         }
         )}
       </div>
       <button onClick={nextQuestion}>Next Question</button>
-      <h3>Score: {score}</h3>
+      <h3>Score: {score} / {questionNumber}</h3>
     </div>
   )
 }

@@ -1,25 +1,28 @@
-body {
+.hero {
   background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/A7NEWC7.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-position: center center;
   background-size: cover;
-  height: 100%;
-  background-attachment: fixed;
+  /* height: 100%; */
+  /* background-attachment: fixed; */
   color: lightcoral;
   text-align: center;
   margin: 0 auto;
-  padding: 100px;
+  padding-bottom: 300px;
 }
 
-/* .answerButton {
-  background-color: green;
-} */
-
-
 button.correct {
-  background-color: green;
+  background-color: hsl(153, 53%, 53%)
 }
 
 button.selected:not(correct) {
-  background-color: red;
+  background-color: hsl(348, 86%, 61%)
+}
+
+.button-group {
+  padding: 10px;
+}
+
+.answer-button {
+  cursor: pointer;
 }

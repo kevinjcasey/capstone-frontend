@@ -1,5 +1,7 @@
-import React from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { Link } from 'react-router-dom'
 
 const GameEnd = () => {
   const score = useSelector((state) => state.score)
@@ -31,7 +33,8 @@ const GameEnd = () => {
   return (
     <div>
       <h3>Final Score: {score}</h3>
-      <button onClick={backHome}>Back to Home</button>
+      <button onClick={backHome}><Link to="/">Back to Home</Link></button>
+      <button><Link to="/add">Contribute</Link></button>
     </div>
   )
 }

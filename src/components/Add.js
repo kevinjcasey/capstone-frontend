@@ -5,9 +5,9 @@ const Add = () => {
   // STATES
   const [trivia, setTrivia] = useState([])
   const [newTrivia, setNewTrivia] =useState({
-    category: null,
-    difficulty: null,
-    questionType: null,
+    // category: '',
+    // difficulty: null,
+    // questionType: null,
     question: '',
     correct_answer: '',
     incorrect_answer_one: '',
@@ -29,12 +29,15 @@ const Add = () => {
     setNewTrivia({ ...newTrivia, [event.target.name]: event.target.value })
   }
 
-  const handleCreate = (event, addData) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
+    handleCreate(newTrivia)
+  }
+
+  const handleCreate = (addData) => {
     axios.post('http://localhost:8000/api/trivia', addData)
     .then((res) => {
       setTrivia([...trivia, res.data])
-      console.log(res);
     })
   }
 
@@ -42,47 +45,73 @@ const Add = () => {
     getTrivia()
   }, [])
 
+  // const triviaArray = [
+  //   {
+  //     name: 'GENERAL KNOWLEDGE',
+  //     id: 1
+  //   },
+  //   {
+  //     name: 'ENTERTAINMENT: BOOKS',
+  //     id: 2
+  //   },
+  //   {
+  //     name: 'ENTERTAINMENT: FILM',
+  //     id: 3
+  //   }
+  // ]
+
   return (
     <div>
       <h3>Submit your own questions</h3>
       {/* ------- Submit Form ------- */}
       <div>
-        <form id="createForm" onSubmit={handleCreate}>
-          <select name="category" id="category" form="createForm">
-            <option name="category" value={newTrivia.category} onChange={handleChange}>GENERAL KNOWLEDGE</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: BOOKS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: FILM</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: MUSIC</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: MUSICALS & THEATRES</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: TELEVISION</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: VIDEO GAMES</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: BOARD GAMES</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>SCIENCE & NATURE</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>SCIENCE: COMPUTERS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>SCIENCE: MATHEMATICS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>MYTHOLOGY</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>SPORTS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>GEOGRAPHY</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>HISTORY</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>POLITICS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ART</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>CELEBRITIES</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ANIMALS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>VECHICLES</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: COMICS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>SCIENCE: GADGETS</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: JAPANESE ANIME & MANGA</option>
-            <option name="category" value={newTrivia.category} onChange={handleChange}>ENTERTAINMENT: CARTOON AND ANIMATIONS</option>
+        <form id="createForm" onSubmit={handleSubmit}>
+            {/* <select defaultValue="default" name="category" onChange={handleChange}>
+              <option disabled value="default">Select Category</option>
+          { triviaArray.map((category) => (
+            <option value={category.name}>{category.name}</option>
+          ))}
+            </select> */}
+         
+          <select name="category" id="category" form="createForm" onChange={handleChange}>
+            <option name="category" value={newTrivia.category}>General Knowledge</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Books</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Film</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Music</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Muiscals and Thetres</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Television</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Video Games</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Board Games</option>
+            <option name="category" value={newTrivia.category}>Science & Nature</option>
+            <option name="category" value={newTrivia.category}>Science: Computers</option>
+            <option name="category" value={newTrivia.category}>Science: Mathematics</option>
+            <option name="category" value={newTrivia.category}>Mythology</option>
+            <option name="category" value={newTrivia.category}>Sports</option>
+            <option name="category" value={newTrivia.category}>Geography</option>
+            <option name="category" value={newTrivia.category}>History</option>
+            <option name="category" value={newTrivia.category}>Politics</option>
+            <option name="category" value={newTrivia.category}>Art</option>
+            <option name="category" value={newTrivia.category}>Celebrities</option>
+            <option name="category" value={newTrivia.category}>Animals</option>
+            <option name="category" value={newTrivia.category}>Vehichles</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Comics</option>
+            <option name="category" value={newTrivia.category}>Science: Gadgets</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Japanese Anime and Manga</option>
+            <option name="category" value={newTrivia.category}>Entertainment: Cartoon & Animations</option>
           </select>
-          <select name="difficulty" id="difficulty" form="createForm">
-            <option name="difficulty" value={newTrivia.difficulty} onChange={handleChange}>EASY</option>
-            <option name="difficulty" value={newTrivia.difficulty} onChange={handleChange}>MEDIUM</option>
-            <option name="difficulty" value={newTrivia.difficulty} onChange={handleChange}>HARD</option>
+          <select name="difficulty" id="difficulty" form="createForm" onChange={handleChange}>
+            <option name="difficulty" value={newTrivia.difficulty}>Easy</option>
+            <option name="difficulty" value={newTrivia.difficulty}>Medium</option>
+            <option name="difficulty" value={newTrivia.difficulty}>Hard</option>
           </select>
-          <select name="questionType" id="questionType" form="createForm">
-            <option name="questionType" value={newTrivia.questionType} onChange={handleChange}>MULTIPLE CHOICE</option>
-            <option name="questionType" value={newTrivia.questionType} onChange={handleChange}>TRUE/FALSE</option>
+          <select name="questionType" id="questionType" form="createForm" onChange={handleChange}>
+            <option name="questionType" value={newTrivia.questionType}>Multiple Choice</option>
+            <option name="questionType" value={newTrivia.questionType}>True/False</option>
           </select>
+          {/* <select name="category" id="category" form="createForm" onChange={handleChange}>
+            <option name="category" value={newTrivia.category}>Art</option>
+            <option name="category" value={newTrivia.category}>History</option>
+          </select> */}
           <input 
             type="text" 
             name="question" 
