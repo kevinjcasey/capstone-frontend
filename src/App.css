@@ -7,8 +7,6 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  /* height: 100%; */
-  /* background-attachment: fixed; */
   color: lightcoral;
   text-align: center;
   margin: 0 auto;
@@ -23,6 +21,8 @@ button.correct {
   font-size: 1rem;
 }
 
+/* negation - pseudo class
+https://css-tricks.com/almanac/selectors/n/not/ */
 button.selected:not(correct) {
   background-color: hsl(348, 86%, 61%);
   border-radius: 2em;
@@ -44,9 +44,3 @@ button {
 a {
   margin: 20px;
 }
-
-/* .next-button {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: black;
-} */

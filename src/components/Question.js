@@ -45,8 +45,9 @@ const Question = () => {
   // USER ANSWER CHOICE + SCORE INCREASE
   const handleAnswerChoice = (event) => {
     setAnswerSelected(true)
-    // textContent - used to content an element/tag
+    // textContent - used to add content an element/tag
     // returns the entire content of the element the user selects
+    // visibility doesn't matter
     // original state set to 'null'
     setUserAnswer(event.target.textContent)
     
