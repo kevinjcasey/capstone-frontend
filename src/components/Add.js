@@ -17,7 +17,7 @@ const Add = () => {
   
   // FETCH DATA
   const getTrivia = () => {
-    axios.get('http://localhost:8000/api/trivia')
+    axios.get('https://ga-capstone-back.herokuapp.com/api/trivia')
     .then((res) => {
       setTrivia(res.data)
     })
@@ -35,7 +35,7 @@ const Add = () => {
   }
 
   const handleCreate = (addData) => {
-    axios.post('http://localhost:8000/api/trivia', addData)
+    axios.post('https://ga-capstone-back.herokuapp.com/api/trivia', addData)
     .then((res) => {
       setTrivia([...trivia, res.data])
     })
