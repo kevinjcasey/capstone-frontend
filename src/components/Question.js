@@ -90,10 +90,10 @@ const Question = () => {
   }, [questionIndex]) // What?
 
   return (
-    <div>
+    <div className="mt-4">
       {/* Displaying the first question and answer options */}
-      <h2 class="title is-2">Question {questionIndex + 1}</h2>
-      <h3 dangerouslySetInnerHTML={{ __html: question?.question}} />
+      <h2 className="title is-3 has-text-info p-3">Question {questionIndex + 1}</h2>
+      <h3 className="is-size-3 has-text-light" dangerouslySetInnerHTML={{ __html: question?.question}} />
       <div>
         { answerOptions.map((option, id) => {
           return (
@@ -101,7 +101,6 @@ const Question = () => {
             <div className="button-group">
               <button 
                 className={showAnswer(option)}
-                // class="answer-button"
                 onClick={handleAnswerChoice} 
                 key={id} 
                 dangerouslySetInnerHTML={{ __html: option}} />
@@ -110,8 +109,8 @@ const Question = () => {
         }
         )}
       </div>
-      <button onClick={nextQuestion}>Next Question</button>
-      <h3>Score: {score} / {questionNumber}</h3>
+      <button className="button is-rounded is-info m-3" onClick={nextQuestion}>Next Question</button>
+      <h3 className="is-size-4 has-text-light">Score: {score} / {questionNumber}</h3>
     </div>
   )
 }

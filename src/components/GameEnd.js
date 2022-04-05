@@ -32,9 +32,9 @@ const GameEnd = () => {
 
   return (
     <div>
-      <h3>Final Score: {score}</h3>
+      <h3 className="is-size-2 pb-6 has-text-success has-text-weight-bold">Final Score: {score}</h3>
       <button onClick={backHome}><Link to="/">Back to Home</Link></button>
-      <button><Link to="/add">Contribute</Link></button>
+      <button><Link to="/add">Add Questions</Link></button>
     </div>
   )
 }
