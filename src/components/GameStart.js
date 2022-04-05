@@ -170,8 +170,6 @@ const GameStart = () => {
       <button onClick={gameStart} className="button is-rounded is-info m-3">
         Start!
       </button>
-      {/* display Question via ? :  */}
-      {/* <Question />  */}
     </div>
   )
 }
