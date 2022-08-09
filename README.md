@@ -17,7 +17,9 @@ Bar trivia game using a third-party API (see resources) which allows users to ch
 
 ## Links
 
-[TriviaFluent](https://ga-capstone-front.herokuapp.com/){:target="_blank"} (live link)
+[TriviaFluent](https://ga-capstone-front.herokuapp.com/) (live link)
+
+<a href="https://ga-capstone-front.herokuapp.com/" target="_blank">Trivia Fluent</a> (live link)
 
 [Back-end GitHub repo](https://github.com/kevinjcasey/capstone-backend)
 
