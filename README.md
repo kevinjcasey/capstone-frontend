@@ -1,30 +1,37 @@
-Old Home.js code: 
+# TriviaFluent
 
-// const [question, setQuestion] = useState('')
-  // const [newQuestion, setNewQuestion] = useState([])
-  // const [category, setCategory] = useState('')
-  // const [correctAnswer, setCorrectAnswer] = useState('')
-  // const [incorrectAnswers, setIncorrectAnswers] = useState('')
+![Project Image](https://i.imgur.com/pytDVVc.jpg)
 
-  // const correct_answer = correct_answer
-  // const incorrect_answers = incorrect_answers 
- 
-  // const [answers, setAnswers] = useState({
-  //   'correct_answer': '',
-  //   'incorrect_answers': ''
-  // })
+## Description 
 
-  // const getTrivia = () => axios.get('https://opentdb.com/api.php?amount=10&category=11&type=multiple').then((res) => {
-  //   setNewQuestion(res.data.results)
-  //   setAnswers(res.data.results)
-  // })
+Bar trivia game using a third-party API (see resources) which allows users to choose category, difficulty, and number of questions.
 
-  // Need to create an array or state that holds both correct and incorrect answers?
-  
+## Technologies
+- React
+- Redux
+- Python
+- Django
+- postgreSQL
+- Bulma
+- Deployed via Heroku
 
+## Links
 
-  // useEffect(() => {
-  //   getTrivia()
-  // }, [])
+[TriviaFluent](https://ga-capstone-front.herokuapp.com/) (live link)
 
-  // replaceAll('&quot;', '"').replaceAll('&#039;', "'").replaceAll('&amp;', '&')
+[Back-end GitHub repo](https://github.com/kevinjcasey/capstone-backend)
+
+## Resources
+
+[Open Trivia Database](https://opentdb.com/) (API service)
+
+## References
+
+[Reducer functions](https://redux.js.org/usage/structuring-reducers/refactoring-reducer-example)
+[Random question generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+[Updating payload in redux](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
+
+## Author(s) Info
+Kevin Casey
+- [Website](https://kevinjcasey.com/)
+- [LinkedIn](https://www.linkedin.com/in/kevin-j-casey/)

@@ -45,7 +45,9 @@ const Question = () => {
   // USER ANSWER CHOICE + SCORE INCREASE
   const handleAnswerChoice = (event) => {
     setAnswerSelected(true)
-    // textContent changes the text of the element to be readable
+    // textContent - used to add content an element/tag
+    // returns the entire content of the element the user selects
+    // visibility doesn't matter
     // original state set to 'null'
     setUserAnswer(event.target.textContent)
     
@@ -91,7 +93,7 @@ const Question = () => {
 
   return (
     <div className="mt-4">
-      {/* Displaying the first question and answer options */}
+      {/* Displaying question and answer options */}
       <h2 className="title is-3 has-text-info p-3">Question {questionIndex + 1}</h2>
       <h3 className="is-size-3 has-text-light" dangerouslySetInnerHTML={{ __html: question?.question}} />
       <div>
